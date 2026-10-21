@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-ZM">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f4ed">
+  <meta name="description" content="Sign in to the Mulungushi University off-campus accommodation portal.">
+  <title>Sign in | Mulungushi Accommodation</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/portal.js" defer></script>
+</head>
+<body class="portal-body">
+  <header class="site-header dashboard-header">
+    <a class="brand" href="/landingpage.html" aria-label="Accommodation information">
+      <span class="brand-mark" aria-hidden="true">O</span>
+      <span>off campus<span class="brand-accent">accommodation</span></span>
+    </a>
+    <nav class="dashboard-nav" aria-label="Main navigation">
+      <a href="/landingpage.html">About the service</a>
+      <a href="/about-us.html">About us</a>
+      <a href="/terms-and-conditions.html">Terms</a>
+    </nav>
+  </header>
+  <main class="login-page">
+    <section class="portal-card login-card" aria-labelledby="login-title">
+      <p class="section-kicker">MULUNGUSHI UNIVERSITY · KABWE</p>
+      <h1 id="login-title">Welcome back</h1>
+      <p class="login-subtitle">Sign in to continue to your accommodation account.</p>
+      <form class="portal-form" id="login-form">
+        <label class="form-control-group"><span class="form-field">Select your role</span>
+          <select class="form-control" name="role" required>
+            <option value="" selected disabled>Select role</option>
+            <option value="student">Student</option>
+            <option value="landlord">Landlord</option>
+            <option value="admin">Admin / secret login</option>
+          </select>
+        </label>
+        <label class="form-control-group"><span class="form-field">Username, email, or phone number</span><input class="form-control" name="identifier" type="text" autocomplete="username" required></label>
+        <label class="form-control-group"><span class="form-field">Password</span><input class="form-control" name="password" type="password" autocomplete="current-password" required></label>
+        <button class="submit-button login-submit" type="submit">Log in / Sign in</button>
+        <p class="form-status" id="login-status" role="status" aria-live="polite"></p>
+      </form>
+      <p class="portal-switch">No account? <a href="/registration.html">Create an account here</a></p>
+      <div class="login-divider"><span>Continue with</span></div>
+      <button class="google-login-button" type="button" disabled aria-describedby="google-login-note">
+        <span aria-hidden="true" class="google-mark">G</span> Google
+      </button>
+      <p class="field-hint google-login-note" id="google-login-note">Google sign-in is not connected in this prototype.</p>
+      <details class="demo-credentials">
+        <summary>Demo administrator sign-in</summary>
+        <p>Role: Admin<br>Email: <code>admin@mulungushi.local</code><br>Password: <code>admin123</code></p>
+      </details>
+    </section>
+    <p class="demo-notice login-notice">Prototype mode: demo accounts are saved only in this browser and are not secure or shared between devices.</p>
+  </main>
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="/landingpage.html"><span class="brand-mark" aria-hidden="true">O</span><span>off campus<span class="brand-accent">accommodation</span></span></a>
+    <p>Mulungushi University · Kabwe, Zambia</p>
+    <a href="/terms-and-conditions.html">Terms and conditions</a>
+  </footer>
+</body>
+</html>

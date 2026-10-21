@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-ZM">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f4ed">
+  <meta name="description" content="Choose a demo accommodation and send a booking request.">
+  <title>Request accommodation | Mulungushi Accommodation</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/portal.js" defer></script>
+</head>
+<body class="portal-body" data-booking-page="student">
+  <header class="site-header dashboard-header">
+    <a class="brand" href="/student.html" aria-label="Student dashboard"><span class="brand-mark" aria-hidden="true">O</span><span>off campus<span class="brand-accent">accommodation</span></span></a>
+    <nav class="dashboard-nav" aria-label="Booking navigation">
+      <a href="/student.html">My dashboard</a>
+      <a href="/landingpage.html">Service information</a>
+      <button class="portal-sign-out" type="button" data-sign-out>Sign out</button>
+    </nav>
+  </header>
+  <main class="dashboard-page portal-dashboard">
+    <section class="dashboard-banner">
+      <div><p class="section-kicker">STUDENT BOOKING</p><h1>Request accommodation</h1><p>Welcome, <span data-booking-user>Student</span>. Select a demo listing and send a request.</p></div>
+    </section>
+    <section class="portal-card booking-card">
+      <p class="demo-notice booking-demo-notice">These sample listings are illustrative only. A request is saved in this browser and is not sent to a landlord.</p>
+      <form class="portal-form" id="booking-form">
+        <label class="form-control-group"><span class="form-field">Boarding house, room, or apartment</span>
+          <select class="form-control" name="listingId" required>
+            <option value="" selected disabled>Choose accommodation</option>
+          </select>
+        </label>
+        <label class="form-control-group"><span class="form-field">Preferred move-in date</span><input class="form-control" name="moveInDate" type="date" required></label>
+        <label class="form-control-group"><span class="form-field">Message to the landlord (optional)</span><textarea class="form-control" name="message" rows="4" maxlength="500" placeholder="Introduce yourself or ask a question"></textarea></label>
+        <button class="submit-button" type="submit">Save demo booking request</button>
+        <p class="form-status" id="booking-status" role="status" aria-live="polite"></p>
+      </form>
+      <a class="portal-inline-link" href="/student.html">Return to student dashboard</a>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">O</span><span>off campus<span class="brand-accent">accommodation</span></span></a><p>Mulungushi University · Kabwe, Zambia</p><a href="/terms-and-conditions.html">Terms</a></footer>
+</body>
+</html>

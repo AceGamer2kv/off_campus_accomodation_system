@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-ZM">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f4ed">
+  <meta name="description" content="Create a student or landlord accommodation account.">
+  <title>Create account | Mulungushi Accommodation</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/portal.js" defer></script>
+</head>
+<body class="portal-body">
+  <header class="site-header dashboard-header">
+    <a class="brand" href="/" aria-label="Sign in">
+      <span class="brand-mark" aria-hidden="true">O</span>
+      <span>off campus<span class="brand-accent">accommodation</span></span>
+    </a>
+    <nav class="dashboard-nav" aria-label="Registration navigation">
+      <a href="/">Sign in</a>
+      <a href="/landingpage.html">About the service</a>
+    </nav>
+  </header>
+  <main class="portal-main portal-main-single">
+    <section class="portal-card portal-register-card" aria-labelledby="register-title">
+      <p class="section-kicker">GET STARTED</p>
+      <h1 id="register-title">Create an account</h1>
+      <p>Choose student or landlord. Administrator accounts are managed by an existing administrator.</p>
+      <form class="portal-form" id="register-form">
+        <label class="form-control-group"><span class="form-field">I am registering as</span>
+          <select class="form-control" name="role" id="register-role" required>
+            <option value="student">Student</option>
+            <option value="landlord">Landlord</option>
+          </select>
+        </label>
+        <label class="form-control-group"><span class="form-field">Full name</span><input class="form-control" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required></label>
+        <label class="form-control-group"><span class="form-field">Email address</span><input class="form-control" name="email" type="email" autocomplete="email" maxlength="254" required></label>
+        <label class="form-control-group" id="student-id-field"><span class="form-field">Student ID</span><input class="form-control" name="studentId" id="register-student-id" type="text" autocomplete="off" minlength="2" maxlength="50" required></label>
+        <label class="form-control-group"><span class="form-field">Phone number</span><input class="form-control" name="phone" type="tel" autocomplete="tel" required></label>
+        <label class="form-control-group"><span class="form-field">Password (at least 8 characters)</span><input class="form-control" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required></label>
+        <button class="submit-button" type="submit">Create account</button>
+        <p class="form-status" id="register-status" role="status" aria-live="polite"></p>
+      </form>
+      <p class="field-hint" id="landlord-approval-note" hidden>Landlord accounts are marked as awaiting approval in this demo.</p>
+      <p class="portal-switch">Already registered? <a href="/">Sign in</a></p>
+    </section>
+    <p class="demo-notice">Prototype mode: registration data and passwords are stored only in this browser. Do not use real or sensitive information.</p>
+  </main>
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">O</span><span>off campus<span class="brand-accent">accommodation</span></span></a>
+    <p>Mulungushi University · Kabwe, Zambia</p>
+    <a href="/terms-and-conditions.html">Terms and conditions</a>
+  </footer>
+</body>
+</html>

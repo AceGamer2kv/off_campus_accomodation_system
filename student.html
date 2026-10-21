@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-ZM">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/portal.js" defer></script>
+</head>
+<body class="portal-body" data-role-page="student">
+  <header class="site-header dashboard-header">
+    <a class="brand" href="/landingpage.html" aria-label="Accommodation home"><span class="brand-mark" aria-hidden="true">O</span><span>off campus<span class="brand-accent">accommodation</span></span></a>
+    <nav class="dashboard-nav" aria-label="Dashboard navigation"><a href="/landingpage.html">Find a home</a><a href="/about-us.html">About us</a><button class="portal-sign-out" type="button" data-sign-out>Sign out</button></nav>
+  </header>
+  <main class="dashboard-page portal-dashboard">
+    <section class="dashboard-banner"><div><p class="section-kicker">STUDENT AREA</p><h1>Welcome, <span data-user-name>Student</span></h1><p data-user-email></p></div></section>
+    <section class="portal-card">
+      <p class="section-kicker">STUDENT DASHBOARD</p>
+      <h2>Your accommodation</h2>
+      <p>Browse the demo accommodation list and send a room or apartment booking request.</p>
+      <a class="submit-button" href="/booking.html">Browse and request accommodation</a>
+      <h2 class="portal-bookings-heading">Your demo booking requests</h2>
+      <div id="student-bookings" class="portal-bookings" aria-live="polite"></div>
+    </section>
+    <p class="demo-notice">Demo requests are stored in this browser only and are not sent to a landlord.</p>
+  </main>
+  <footer class="site-footer"><a class="brand footer-brand" href="/landingpage.html"><span class="brand-mark" aria-hidden="true">O</span><span>off campus<span class="brand-accent">accommodation</span></span></a><p>Mulungushi University · Kabwe, Zambia</p><a href="/terms-and-conditions.html">Terms</a></footer>
+</body>
+</html>
