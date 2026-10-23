@@ -60,10 +60,21 @@ function showStatus(element, message, isError = true) {
 const loginForm = document.querySelector("#login-form");
 if (loginForm) {
 	const status = document.querySelector("#login-status");
+	const resetToggle = document.querySelector("#forgot-password-toggle");
+	const resetPanel = document.querySelector("#password-reset-panel");
+	const resetClose = document.querySelector("#reset-close");
 	const notice = new URLSearchParams(window.location.search).get("notice");
 	if (notice) {
 		showStatus(status, notice === "sign-in-required" ? "Sign in to open your dashboard." : notice, false);
 	}
+
+	const setResetPanelVisible = (visible) => {
+		resetPanel.hidden = !visible;
+		resetToggle.setAttribute("aria-expanded", String(visible));
+		if (visible) resetPanel.querySelector('input[name="email"]').focus();
+	};
+	resetToggle.addEventListener("click", () => setResetPanelVisible(resetPanel.hidden));
+	resetClose.addEventListener("click", () => setResetPanelVisible(false));
 
 	loginForm.addEventListener("submit", (event) => {
 		event.preventDefault();
@@ -89,6 +100,38 @@ if (loginForm) {
 			window.location.assign(dashboardPaths[account.role]);
 		} catch (error) {
 			showStatus(status, error.message || "Could not read demo accounts from browser storage.");
+		}
+	});
+
+	const resetForm = document.querySelector("#password-reset-form");
+	const resetStatus = document.querySelector("#reset-status");
+	resetForm.addEventListener("submit", (event) => {
+		event.preventDefault();
+		try {
+			const values = Object.fromEntries(new FormData(resetForm));
+			const email = values.email.trim().toLowerCase();
+			if (values.newPassword.length < 8 || values.newPassword.length > 128) {
+				showStatus(resetStatus, "Password must be between 8 and 128 characters.");
+				return;
+			}
+			if (values.newPassword !== values.confirmPassword) {
+				showStatus(resetStatus, "The passwords do not match.");
+				return;
+			}
+			const accounts = getAccounts();
+			const account = accounts.find((candidate) => candidate.email.toLowerCase() === email);
+			if (!account) {
+				showStatus(resetStatus, "No account with that email was found in this browser.");
+				return;
+			}
+			account.password = values.newPassword;
+			localStorage.setItem(accountStorageKey, JSON.stringify(accounts));
+			loginForm.elements.identifier.value = email;
+			loginForm.elements.password.focus();
+			resetForm.reset();
+			showStatus(resetStatus, "Password updated. You can now sign in with your new password.", false);
+		} catch (error) {
+			showStatus(resetStatus, error.message || "Could not update the password in browser storage.");
 		}
 	});
 }

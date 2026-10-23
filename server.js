@@ -186,6 +186,21 @@ function createApp({ db } = {}) {
 	const publicRoot = __dirname;
 
 	app.disable("x-powered-by");
+	app.use((req, res, next) => {
+		const origin = req.get("Origin");
+		const allowedOrigin = /^http:\/\/(?:localhost|127\.0\.0\.1):(?:3000|5500)$/.test(origin || "");
+
+		if (origin) res.vary("Origin");
+		if (allowedOrigin) {
+			res.set("Access-Control-Allow-Origin", origin);
+			res.set("Access-Control-Allow-Credentials", "true");
+			res.set("Access-Control-Allow-Methods", "GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS");
+			res.set("Access-Control-Allow-Headers", "Content-Type, X-Client-Id");
+		}
+		if (req.method === "OPTIONS" && req.get("Access-Control-Request-Method")) return res.sendStatus(204);
+
+		next();
+	});
 	app.use(express.json({ limit: "5mb" }));
 	app.use((req, res, next) => {
 		res.set("X-Content-Type-Options", "nosniff");
