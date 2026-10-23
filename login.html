@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f5f4ed">
+  <meta name="theme-color" content="#18382d">
   <meta name="description" content="Sign in to the Mulungushi University off-campus accommodation portal.">
   <title>Sign in | Mulungushi Accommodation</title>
   <link rel="stylesheet" href="/style.css">
   <script src="/portal.js" defer></script>
 </head>
 <body class="portal-body">
-  <header class="site-header dashboard-header">
+  <header class="site-header dashboard-header login-header">
     <a class="brand" href="/landingpage.html" aria-label="Accommodation information">
       <span class="brand-mark" aria-hidden="true">O</span>
       <span>off campus<span class="brand-accent">accommodation</span></span>
@@ -22,36 +22,71 @@
     </nav>
   </header>
   <main class="login-page">
-    <section class="portal-card login-card" aria-labelledby="login-title">
-      <p class="section-kicker">MULUNGUSHI UNIVERSITY · KABWE</p>
-      <h1 id="login-title">Welcome back</h1>
-      <p class="login-subtitle">Sign in to continue to your accommodation account.</p>
-      <form class="portal-form" id="login-form">
-        <label class="form-control-group"><span class="form-field">Select your role</span>
-          <select class="form-control" name="role" required>
-            <option value="" selected disabled>Select role</option>
-            <option value="student">Student</option>
-            <option value="landlord">Landlord</option>
-            <option value="admin">Admin / secret login</option>
-          </select>
-        </label>
-        <label class="form-control-group"><span class="form-field">Username, email, or phone number</span><input class="form-control" name="identifier" type="text" autocomplete="username" required></label>
-        <label class="form-control-group"><span class="form-field">Password</span><input class="form-control" name="password" type="password" autocomplete="current-password" required></label>
-        <button class="submit-button login-submit" type="submit">Log in / Sign in</button>
-        <p class="form-status" id="login-status" role="status" aria-live="polite"></p>
-      </form>
-      <p class="portal-switch">No account? <a href="/registration.html">Create an account here</a></p>
-      <div class="login-divider"><span>Continue with</span></div>
-      <button class="google-login-button" type="button" disabled aria-describedby="google-login-note">
-        <span aria-hidden="true" class="google-mark">G</span> Google
-      </button>
-      <p class="field-hint google-login-note" id="google-login-note">Google sign-in is not connected in this prototype.</p>
-      <details class="demo-credentials">
-        <summary>Demo administrator sign-in</summary>
-        <p>Role: Admin<br>Email: <code>admin@mulungushi.local</code><br>Password: <code>admin123</code></p>
-      </details>
+    <section class="login-showcase" aria-label="Accommodation portal">
+      <div class="showcase-orbit orbit-one"></div>
+      <div class="showcase-orbit orbit-two"></div>
+      <div class="showcase-building" aria-hidden="true">
+        <span class="showcase-window"></span>
+        <span class="showcase-window"></span>
+        <span class="showcase-window"></span>
+        <span class="showcase-window"></span>
+        <span class="showcase-door"></span>
+      </div>
+      <div class="showcase-copy">
+        <p class="showcase-kicker"><span></span> YOUR NEXT CHAPTER STARTS HERE</p>
+        <h1>Find a place<br>to <em>feel at home.</em></h1>
+        <p>Good living, closer to campus. Sign in to manage your stay or find a space that fits your life.</p>
+        <div class="showcase-location"><span aria-hidden="true">⌖</span> Mulungushi University · Kabwe</div>
+      </div>
+      <div class="showcase-caption"><span>01 / 03</span> A little closer to home</div>
     </section>
-    <p class="demo-notice login-notice">Prototype mode: demo accounts are saved only in this browser and are not secure or shared between devices.</p>
+    <div class="login-content">
+      <section class="portal-card login-card" aria-labelledby="login-title">
+        <div class="login-card-heading">
+          <p class="section-kicker">WELCOME BACK</p>
+          <h2 id="login-title">Sign in</h2>
+          <p class="login-subtitle">Access your accommodation portal.</p>
+        </div>
+        <form class="portal-form" id="login-form">
+          <label class="form-control-group"><span class="form-field">I am signing in as</span>
+            <select class="form-control" name="role" required>
+              <option value="" selected disabled>Select your role</option>
+              <option value="student">Student</option>
+              <option value="landlord">Landlord</option>
+              <option value="admin">Admin</option>
+            </select>
+          </label>
+          <label class="form-control-group"><span class="form-field">Username, email, or phone</span><input class="form-control" name="identifier" type="text" autocomplete="username" required></label>
+          <div class="form-control-group login-password-group">
+            <span class="password-label-row"><label class="form-field" for="login-password">Password</label><button class="forgot-password-toggle" id="forgot-password-toggle" type="button" aria-expanded="false" aria-controls="password-reset-panel">Forgot password?</button></span>
+            <input class="form-control" id="login-password" name="password" type="password" autocomplete="current-password" required>
+          </div>
+          <button class="submit-button login-submit" type="submit">Sign in <span aria-hidden="true">→</span></button>
+          <p class="form-status" id="login-status" role="status" aria-live="polite"></p>
+        </form>
+        <section class="password-reset-panel" id="password-reset-panel" aria-labelledby="reset-title" hidden>
+          <div class="reset-panel-heading">
+            <h3 id="reset-title">Reset your password</h3>
+            <button class="reset-close" id="reset-close" type="button" aria-label="Close password reset">×</button>
+          </div>
+          <p>Enter the email on your account and choose a new password.</p>
+          <form class="portal-form reset-form" id="password-reset-form">
+            <label class="form-control-group"><span class="form-field">Account email</span><input class="form-control" name="email" type="email" autocomplete="email" required></label>
+            <label class="form-control-group"><span class="form-field">New password</span><input class="form-control" name="newPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" required></label>
+            <label class="form-control-group"><span class="form-field">Confirm new password</span><input class="form-control" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" required></label>
+            <button class="submit-button reset-submit" type="submit">Save new password</button>
+            <p class="form-status" id="reset-status" role="status" aria-live="polite"></p>
+          </form>
+          <p class="reset-demo-note">Prototype only: this changes the password saved in this browser. It does not send an email.</p>
+        </section>
+        <p class="portal-switch">New to the neighbourhood? <a href="/registration.html">Create an account</a></p>
+        <details class="demo-credentials">
+          <summary>Demo administrator sign-in</summary>
+          <p>Role: Admin<br>Email: <code>admin@mulungushi.local</code><br>Password: <code>admin123</code></p>
+        </details>
+      </section>
+      <p class="demo-notice login-notice">Prototype mode: account details are saved only in this browser and are not secure or shared between devices.</p>
+    </div>
   </main>
   <footer class="site-footer">
     <a class="brand footer-brand" href="/landingpage.html"><span class="brand-mark" aria-hidden="true">O</span><span>off campus<span class="brand-accent">accommodation</span></span></a>
