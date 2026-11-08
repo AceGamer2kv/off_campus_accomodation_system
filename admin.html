@@ -13,26 +13,44 @@
   <header class="site-header dashboard-header">
     <a class="brand" href="/landingpage.html" aria-label="Accommodation home"><span class="brand-mark" aria-hidden="true">O</span><span>off campus<span class="brand-accent">accommodation</span></span></a>
     <nav class="dashboard-nav" aria-label="Dashboard navigation">
-      <a href="/landingpage.html">Service information</a>
+      <a href="/landingpage.html">Search listings</a>
       <a href="/about-us.html">About us</a>
       <button class="portal-sign-out" type="button" data-sign-out>Sign out</button>
     </nav>
   </header>
   <main class="dashboard-page portal-dashboard">
     <section class="dashboard-banner">
-      <div><p class="section-kicker">ADMINISTRATION</p><h1>Welcome, <span data-user-name>Administrator</span></h1><p data-user-email></p></div>
+      <div>
+        <p class="section-kicker">ADMINISTRATION</p>
+        <h1>Welcome, <span data-user-name>Administrator</span></h1>
+        <p data-user-email></p>
+      </div>
     </section>
+
     <section class="portal-card">
       <p class="section-kicker">ADMIN DASHBOARD</p>
-      <h2>Administration tools are planned for the next phase</h2>
-      <p>This static prototype confirms administrator sign-in and page navigation. Administrative changes are not applied in this demo.</p>
-      <ul class="portal-feature-list">
-        <li>Review and approve landlord accounts.</li>
-        <li>Change a user's role when necessary.</li>
-        <li>Review accommodation activity and resolve reported issues.</li>
-      </ul>
+      <h2>Operations overview</h2>
+      <div class="dashboard-grid">
+        <article class="dashboard-card">
+          <h3>Users</h3>
+          <div id="admin-users" class="dashboard-list"></div>
+        </article>
+        <article class="dashboard-card">
+          <h3>Approvals</h3>
+          <div id="admin-approvals" class="dashboard-list"></div>
+        </article>
+      </div>
     </section>
-    <p class="demo-notice">The demo administrator can sign in from the shared login page. This page does not change user roles or approvals.</p>
+
+    <section class="portal-card">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">REQUESTS</p>
+          <h2>Student accommodation requests</h2>
+        </div>
+      </div>
+      <div id="admin-requests" class="dashboard-list"></div>
+    </section>
   </main>
   <footer class="site-footer"><a class="brand footer-brand" href="/landingpage.html"><span class="brand-mark" aria-hidden="true">O</span><span>off campus<span class="brand-accent">accommodation</span></span></a><p>Mulungushi University · Kabwe, Zambia</p><a href="/terms-and-conditions.html">Terms</a></footer>
 </body>

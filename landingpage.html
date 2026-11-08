@@ -4,28 +4,211 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f5f4ed">
-  <meta name="description" content="Off-campus accommodation information for Mulungushi University students and landlords.">
-  <title>Accommodation information | Mulungushi University</title>
+  <meta name="description" content="Discover verified student accommodation options around Mulungushi University, Kabwe.">
+  <title>Accommodation search | Mulungushi University</title>
   <link rel="stylesheet" href="/style.css">
+  <script src="/portal.js" defer></script>
 </head>
-<body class="portal-body">
+<body class="portal-body" data-page="landing">
   <header class="site-header dashboard-header">
-    <a class="brand" href="/" aria-label="Sign in"><span class="brand-mark" aria-hidden="true">O</span><span>off campus<span class="brand-accent">accommodation</span></span></a>
-    <nav class="dashboard-nav" aria-label="Main navigation"><a href="/">Sign in</a><a href="/registration.html">Register</a><a href="/about-us.html">About us</a></nav>
+    <a class="brand" href="/landingpage.html" aria-label="Accommodation home">
+      <span class="brand-mark" aria-hidden="true">O</span>
+      <span>off campus<span class="brand-accent">accommodation</span></span>
+    </a>
+    <nav class="dashboard-nav" aria-label="Main navigation">
+      <a href="/">Sign in</a>
+      <a href="/registration.html">Register</a>
+      <a href="/about-us.html">About us</a>
+    </nav>
   </header>
+
   <main class="portal-main portal-main-single">
     <section class="portal-hero">
       <p class="section-kicker">MULUNGUSHI UNIVERSITY · KABWE</p>
-      <h1>Off-campus accommodation, made easier.</h1>
-      <p>A planned place for students to find a room near campus and for landlords to manage accommodation.</p>
-      <div class="portal-hero-actions"><a class="submit-button" href="/">Sign in</a><a class="portal-secondary-link" href="/registration.html">Create an account</a></div>
+      <h1>Find a home near campus with confidence.</h1>
+      <p>Search nearby rooms, studios, and shared homes, save favorites, and send a booking request in minutes.</p>
+      <div class="portal-hero-actions">
+        <a class="submit-button" href="#listing-search">Browse homes</a>
+        <a class="portal-secondary-link" href="/registration.html">Create an account</a>
+      </div>
     </section>
+
     <section class="dashboard-grid portal-info-grid" aria-label="Who the service is for">
-      <article class="dashboard-card"><h2>For students</h2><p>Explore available boarding houses, request a room, and communicate with your landlord about your stay.</p></article>
-      <article class="dashboard-card"><h2>For landlords</h2><p>Manage properties and rooms, respond to student requests, and handle stay-related notices and complaints.</p></article>
+      <article class="dashboard-card">
+        <h2>For students</h2>
+        <p>Compare spaces, plan move-in dates, and send a request that is saved in your local demo account.</p>
+      </article>
+      <article class="dashboard-card">
+        <h2>For landlords</h2>
+        <p>Review student requests, update room availability, and manage the booking pipeline from one place.</p>
+      </article>
     </section>
-    <p class="demo-notice">The current version is a static navigation prototype. Account data is local to this browser; accommodation workflows are planned.</p>
+
+    <section class="search-panel" aria-labelledby="search-title">
+      <div class="search-heading">
+        <div>
+          <p class="section-kicker">FIND YOUR PLACE</p>
+          <h2 id="search-title">Search accommodation</h2>
+        </div>
+        <p class="search-hint">Curated listings near Mulungushi University.</p>
+      </div>
+
+      <form id="listing-search" class="filters" novalidate>
+        <label class="filter-field location-field">
+          <span>Location</span>
+          <input type="text" name="location" placeholder="Any area">
+        </label>
+        <label class="filter-field">
+          <span>Room type</span>
+          <select name="roomType">
+            <option value="all">Any type</option>
+            <option value="Private room">Private room</option>
+            <option value="Shared room">Shared room</option>
+            <option value="Studio">Studio</option>
+            <option value="Entire apartment">Entire apartment</option>
+          </select>
+        </label>
+        <label class="filter-field">
+          <span>Budget</span>
+          <select name="budget">
+            <option value="any">Any budget</option>
+            <option value="1500">Up to K 1,500</option>
+            <option value="2500">Up to K 2,500</option>
+            <option value="4000">Up to K 4,000</option>
+            <option value="5000">Up to K 5,000</option>
+          </select>
+        </label>
+        <button class="search-button" type="submit" aria-label="Search listings">⌕</button>
+      </form>
+    </section>
+
+    <section class="listing-section" aria-live="polite">
+      <div class="results-toolbar">
+        <div class="results-title-wrap">
+          <h2>Available places</h2>
+          <span class="result-count" id="result-count">0 homes</span>
+        </div>
+        <div class="listing-controls">
+          <button class="saved-toggle" type="button" id="saved-toggle" aria-pressed="false">
+            <span aria-hidden="true">♡</span> Saved <span id="saved-count">0</span>
+          </button>
+          <label class="sort-control">
+            <span>Sort by</span>
+            <select id="sort-listings" aria-label="Sort listings">
+              <option value="recommended">Recommended</option>
+              <option value="price-asc">Price: low to high</option>
+              <option value="price-desc">Price: high to low</option>
+              <option value="name">Name</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="listing-grid" id="listing-grid"></div>
+    </section>
+
+    <section class="request-section" aria-labelledby="request-title">
+      <div class="request-copy">
+        <p class="section-kicker">REQUEST A ROOM</p>
+        <h2 id="request-title">Tell us what you need.</h2>
+        <p>Share your preferred room type, move-in date, and monthly budget so the portal can organise your accommodation search.</p>
+        <div class="request-aside">
+          <span class="aside-line" aria-hidden="true"></span>
+          <span>Fast, local demo flow for student applications.</span>
+        </div>
+      </div>
+
+      <form class="request-form" id="request-form" novalidate>
+        <div class="form-topline">
+          <span>Accommodation request</span>
+          <span class="form-step">Step 1 of 1</span>
+        </div>
+
+        <div class="form-row">
+          <label class="form-control-group">
+            <span class="form-field">Your name</span>
+            <input class="form-control" name="name" type="text" placeholder="Enter your full name" required>
+          </label>
+          <label class="form-control-group">
+            <span class="form-field">Email address</span>
+            <input class="form-control" name="email" type="email" placeholder="name@example.com" required>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label class="form-control-group">
+            <span class="form-field">Phone number</span>
+            <input class="form-control" name="phone" type="tel" placeholder="+260 97 000 0000" required>
+          </label>
+          <label class="form-control-group">
+            <span class="form-field">Campus</span>
+            <input class="form-control" name="campus" type="text" value="Mulungushi University" readonly>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label class="form-control-group">
+            <span class="form-field">Preferred room type</span>
+            <select class="form-control" name="roomType" required>
+              <option value="" disabled selected>Select room type</option>
+              <option value="Private room">Private room</option>
+              <option value="Shared room">Shared room</option>
+              <option value="Studio">Studio</option>
+              <option value="Entire apartment">Entire apartment</option>
+            </select>
+          </label>
+          <label class="form-control-group">
+            <span class="form-field">Budget (K)</span>
+            <input class="form-control" name="budget" type="number" min="1" max="100000" step="100" placeholder="e.g. 2200" required>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label class="form-control-group">
+            <span class="form-field">Move-in date</span>
+            <input class="form-control" name="moveIn" type="date" required>
+          </label>
+          <label class="form-control-group">
+            <span class="form-field">Preferred listing</span>
+            <select class="form-control" name="listingId" id="listing-select">
+              <option value="">Choose from homes below</option>
+            </select>
+          </label>
+        </div>
+
+        <fieldset class="preference-group">
+          <legend>Must-have facilities</legend>
+          <div class="checkbox-options">
+            <label><input type="checkbox" name="facilities" value="water-storage"> Water storage</label>
+            <label><input type="checkbox" name="facilities" value="secure-yard"> Secure yard</label>
+            <label><input type="checkbox" name="facilities" value="prepaid-power"> Prepaid power</label>
+          </div>
+        </fieldset>
+
+        <label class="form-control-group">
+          <span class="form-field">Message to the landlord</span>
+          <textarea class="form-control" name="message" rows="4" maxlength="500" placeholder="Share your expectations, course year, or request a quiet space"></textarea>
+        </label>
+
+        <label class="consent-option">
+          <input type="checkbox" name="consent" value="on" required>
+          <span>I confirm that the details above are accurate and I agree to be contacted about this accommodation request.</span>
+        </label>
+
+        <p class="validation-summary" id="request-summary" aria-live="polite"></p>
+        <button class="submit-button" type="submit">Submit accommodation request <span aria-hidden="true">→</span></button>
+        <p class="form-status" id="request-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
   </main>
-  <footer class="site-footer"><a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">O</span><span>off campus<span class="brand-accent">accommodation</span></span></a><p>Mulungushi University · Kabwe, Zambia</p><a href="/terms-and-conditions.html">Terms and conditions</a></footer>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="/landingpage.html">
+      <span class="brand-mark" aria-hidden="true">O</span>
+      <span>off campus<span class="brand-accent">accommodation</span></span>
+    </a>
+    <p>Mulungushi University · Kabwe, Zambia</p>
+    <a href="/terms-and-conditions.html">Terms and conditions</a>
+  </footer>
 </body>
 </html>
